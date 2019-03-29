@@ -42,19 +42,19 @@ namespace DemoApp.Pages
 		private async Task<bool> DoSignUp()
 		{
 			var user = await _db.Visitors.FindAsync(Input.Id);
-			if(user == null)
+			if(user != null)
 			{
-				if(Input.Password == Input.ConfirmPassword)
-				{
-					_db.Visitors.Add(Input);
-					await _db.SaveChangesAsync();
-					return true;
-				}
+				ModelState.AddModelError("Input.Id", "Id not available");
+				return false;
+			}
+			if(Input.Password != Input.ConfirmPassword)
+			{
 				ModelState.AddModelError("Input.Password", "Passwords don't match");
 				return false;
 			}
-			ModelState.AddModelError("Input.Id", "Id not available");
-			return false;
+			_db.Visitors.Add(Input);
+			await _db.SaveChangesAsync();
+			return true;
 		}
 
 		private async Task<bool> DoSignIn()
