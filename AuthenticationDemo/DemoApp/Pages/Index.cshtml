@@ -11,7 +11,7 @@
 		<form method="POST">
 			<table>
 				<tr>
-					<td><b>Your Name:</b></td>
+					<td><b>Your Id:</b></td>
 					<td><input asp-for="Input.Id" required="required"/></td>
 				</tr>
 				<tr>
@@ -20,14 +20,13 @@
 					<td><input type="submit" name="signCommand" value="Sign-In"/></td>
 				</tr>
 				<tr>
-					<td><b>Confirm Password:</b></td>
+					<td><b>Confirm:</b></td>
 					<td><input type="password" asp-for="Input.ConfirmPassword"/></td>
 					<td><input type="submit" name="signCommand" value="Sign-Up"/></td>
 				</tr>
-				<tr>
-					<td><div asp-validation-summary="All"></div></td>
-				</tr>
 			</table>
+			<div/>
+			<div asp-validation-summary="All"></div>
 		</form>
 	</body>
 </html>
