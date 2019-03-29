@@ -1,0 +1,12 @@
+@page "{*clientPath}"
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DemoApp</title>
+    </head>
+    <body>
+        <app>@(await Html.RenderComponentAsync<DemoApp.Components.App>())</app>
+        <script src="_framework/components.server.js"></script>
+    </body>
+</html>
