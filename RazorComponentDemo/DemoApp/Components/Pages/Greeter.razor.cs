@@ -9,13 +9,15 @@ namespace DemoApp.Components.Pages
         [Inject]
         private CounterService Counter {get; set;}
 
-        protected string OutputMessage;
+        protected string Visitor = "Visitor";
+        protected string Message;
         protected string NameInput;
 
-        protected void UpdateOutputMessage()
+        protected void UpdateOutput()
         {
             int count = Counter.GetNextCount(NameInput);
-            OutputMessage = $"Your count is {count}";        
+            Visitor = NameInput;
+            Message = $"Your count is {count}";        
         } 
     }
 }
