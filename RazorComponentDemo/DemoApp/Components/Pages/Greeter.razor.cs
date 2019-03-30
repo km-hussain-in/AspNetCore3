@@ -9,7 +9,7 @@ namespace DemoApp.Components.Pages
         [Inject]
         private CounterService Counter {get; set;}
 
-        protected string Visitor = "Visitor";
+        protected string Visitor = "World";
         protected string Message;
         protected string NameInput;
  
