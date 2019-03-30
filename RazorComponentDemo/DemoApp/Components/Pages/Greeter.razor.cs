@@ -12,12 +12,23 @@ namespace DemoApp.Components.Pages
         protected string Visitor = "Visitor";
         protected string Message;
         protected string NameInput;
+ 
+        protected override void OnInit()
+        {
+            Counter.Increment += (name, count) => 
+            {
+                if(name == Visitor)
+                    Message = $"Your count is {count}";
+                else
+                    Message = $"{name}'s count is {count}";
+                Invoke(() => StateHasChanged());    
+            };
+        }
 
         protected void UpdateOutput()
         {
-            int count = Counter.GetNextCount(NameInput);
             Visitor = NameInput;
-            Message = $"Your count is {count}";        
+            Counter.GetNextCount(Visitor);
         } 
     }
 }
