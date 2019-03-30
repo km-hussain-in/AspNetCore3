@@ -25,7 +25,7 @@ namespace DemoApp.Components.Pages
             };
         }
 
-        protected void UpdateOutput()
+        protected void UpdateVisitorCount()
         {
             Visitor = NameInput;
             Counter.GetNextCount(Visitor);
