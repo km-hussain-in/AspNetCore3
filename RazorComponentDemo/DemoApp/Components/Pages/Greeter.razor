@@ -1,10 +1,10 @@
 @page "/greeter"
 @inherits DemoApp.Components.Pages.GreeterBase
-<h1>Hello @Visitor</h1>
+<h1>Hello @VisitorName</h1>
 <p>
     <b>Your Name: </b>
-    <input required="required" bind="@NameInput"/>
-    <button onclick="@UpdateVisitorCount">Count</button>
+    <input required="required" bind="@VisitorName"/>
+    <button onclick="@GenerateToken">Generate</button>
 </p>
-<p>@Message</p>
+<p>@TokenMessage</p>
 

@@ -9,9 +9,14 @@
         <app>@(await Html.RenderComponentAsync<DemoApp.Components.App>())</app>
         <script src="_framework/components.server.js"></script>
         <script>
-            window.indexStatus = {
-                update: async function(result){
-                    document.getElementById("statusOutput").innerText = await result.invokeMethodAsync("GetInfo");
+            window.homePage = {
+                updateElement: function(elementId, textValue){
+                    var tag = document.getElementById(elementId);
+                    if(tag){
+                        tag.innerText = textValue;
+                        return true;
+                    }
+                    return false;
                 }
             };            
         </script>

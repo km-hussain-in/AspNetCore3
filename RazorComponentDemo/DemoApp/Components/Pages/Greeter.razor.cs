@@ -11,35 +11,27 @@ namespace DemoApp.Components.Pages
         private CounterService Counter {get; set;}
 
         [Inject]
-        private IJSRuntime JS {get; set;}
+        private IJSRuntime Script {get; set;}
 
-        protected string Visitor = "World";
-        protected string Message;
-        protected string NameInput;
- 
+        [Parameter]
+        public int Seed {get; set;}
+
+        protected string VisitorName = "World";
+        protected string TokenMessage;
+    
         protected override void OnInit()
         {
             Counter.Increment += (name, count) => 
             {
-                if(name == Visitor)
-                    Message = $"Your count is {count}";
-                else
-                    Message = $"{name}'s count is {count}";
+                TokenMessage = $"Generated token {name}#{count + Seed}";
                 Invoke(() => StateHasChanged());  
             };
         }
 
-        protected void UpdateVisitorCount()
+        protected void GenerateToken()
         {
-            Visitor = NameInput;
-            Counter.GetNextCount(Visitor);
-            JS.InvokeAsync<object>("indexStatus.update", new DotNetObjectRef(new ServerTime()));  
+            Counter.GetNextCount(VisitorName);
+            Script.InvokeAsync<bool>("homePage.updateElement", "statusOutput", System.DateTime.Now);  
         } 
-
-        public class ServerTime
-        {
-            [JSInvokable]
-            public string GetInfo() => $"Time on server is {System.DateTime.Now}";
-        }
     }
 }
