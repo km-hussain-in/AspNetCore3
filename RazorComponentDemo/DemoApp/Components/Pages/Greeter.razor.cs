@@ -16,7 +16,7 @@ namespace DemoApp.Components.Pages
         [Parameter]
         public int InitialCount {get; set;}
 
-        protected string VisitorName = "World";
+        protected string VisitorName;
         protected string TokenMessage;
     
         protected override void OnInit()
