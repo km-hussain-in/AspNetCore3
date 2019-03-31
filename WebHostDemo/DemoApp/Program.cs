@@ -27,12 +27,12 @@ namespace DemoApp
 		}		
 	}
 	
-	class CounterMiddleware
+	class Counting
 	{
 		private CounterService _counter;
 		private RequestDelegate _next;
 		
-		public CounterMiddleware(CounterService counter, RequestDelegate next)
+		public Counting(CounterService counter, RequestDelegate next)
 		{
 			_counter = counter;
 			_next = next;
@@ -54,7 +54,7 @@ namespace DemoApp
 		
 		public void Configure(IApplicationBuilder app)
 		{
-			app.UseMiddleware<CounterMiddleware>();
+			app.UseMiddleware<Counting>();
 			app.UseRouting(routes => 
 			{
 				routes.MapGet("/Time", Clock);
