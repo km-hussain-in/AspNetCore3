@@ -14,7 +14,7 @@ namespace DemoApp.Components.Pages
         private IJSRuntime Script {get; set;}
 
         [Parameter]
-        public int Seed {get; set;}
+        public int InitialCount {get; set;}
 
         protected string VisitorName = "World";
         protected string TokenMessage;
@@ -23,7 +23,7 @@ namespace DemoApp.Components.Pages
         {
             Counter.Increment += (name, count) => 
             {
-                TokenMessage = $"Generated token {name}#{count + Seed}";
+                TokenMessage = $"Generated token {name}#{count + InitialCount}";
                 Invoke(() => StateHasChanged());  
             };
         }
