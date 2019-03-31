@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 
 namespace DemoApp.Components.Pages
 {
@@ -10,7 +11,7 @@ namespace DemoApp.Components.Pages
         private CounterService Counter {get; set;}
 
         [Inject]
-        private Microsoft.JSInterop.IJSRuntime JS {get; set;}
+        private IJSRuntime JS {get; set;}
 
         protected string Visitor = "World";
         protected string Message;
@@ -32,7 +33,13 @@ namespace DemoApp.Components.Pages
         {
             Visitor = NameInput;
             Counter.GetNextCount(Visitor);
-            JS.InvokeAsync<object>("indexStatus.update", $"Time on server is {System.DateTime.Now}");  
+            JS.InvokeAsync<object>("indexStatus.update", new DotNetObjectRef(new ServerTime()));  
         } 
+
+        public class ServerTime
+        {
+            [JSInvokable]
+            public string GetInfo() => $"Time on server is {System.DateTime.Now}";
+        }
     }
 }

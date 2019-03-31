@@ -10,8 +10,8 @@
         <script src="_framework/components.server.js"></script>
         <script>
             window.indexStatus = {
-                update: function(info){
-                    document.getElementById("statusOutput").innerText = info;
+                update: async function(result){
+                    document.getElementById("statusOutput").innerText = await result.invokeMethodAsync("GetInfo");
                 }
             };            
         </script>
