@@ -9,6 +9,9 @@ namespace DemoApp.Components.Pages
         [Inject]
         private CounterService Counter {get; set;}
 
+        [Inject]
+        private Microsoft.JSInterop.IJSRuntime JS {get; set;}
+
         protected string Visitor = "World";
         protected string Message;
         protected string NameInput;
@@ -21,7 +24,7 @@ namespace DemoApp.Components.Pages
                     Message = $"Your count is {count}";
                 else
                     Message = $"{name}'s count is {count}";
-                Invoke(() => StateHasChanged());    
+                Invoke(() => StateHasChanged());  
             };
         }
 
@@ -29,6 +32,7 @@ namespace DemoApp.Components.Pages
         {
             Visitor = NameInput;
             Counter.GetNextCount(Visitor);
+            JS.InvokeAsync<object>("indexStatus.update", $"Time on server is {System.DateTime.Now}");  
         } 
     }
 }
