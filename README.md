@@ -1,12 +1,12 @@
 <h2>ASP.NET Core 3.0 (preview 3) Samples</h2>
 <ul>
-  <li><i><a href="GenHostDemo/DemoApp">Generic Host</a></i></li>
   <li><i><a href="WebHostDemo/DemoApp">Web Host</a></i></li>
-  <li><i><a href="MvcAppDemo1/DemoApp">MVC Basics</a></i></li>
-  <li><i><a href="MvcAppDemo2/DemoApp">Advanced MVC</a></i></li>
+  <li><i><a href="MvcControllerDemo/DemoApp">MVC Controllers</a></i></li>
+  <li><i><a href="MvcViewDemo/DemoApp">MVC Views</a></i></li>
+  <li><i><a href="MvcModelDemo/DemoApp">MVC Models</a></i></li>
   <li><i><a href="RazorPageDemo/DemoApp">Razor Pages</a></i></li>
-  <li><i><a href="EFModelDemo1/DemoApp">Entity Framework Basics</a></i></li>
-  <li><i><a href="EFModelDemo2/DemoApp">Advanced Entity Framework</a></i></li>
+  <li><i><a href="EFCodeFirstDemo/DemoApp">Entity Framework Code First</a></i></li>
+  <li><i><a href="EFDatabaseFirstDemo/DemoApp">Entity Framework Database First</a></i></li>
   <li><i><a href="AuthenticationDemo/DemoApp">Authentication</a></i></li>
   <li><i><a href="WebApiDemo/DemoApp">Web API</a></i></li>
   <li><i><a href="WebSocketDemo/DemoApp">Web Sockets</a></i></li>
