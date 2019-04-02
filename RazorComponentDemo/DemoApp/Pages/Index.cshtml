@@ -1,15 +1,13 @@
-@page "{*clientPath}"
-
-<!DOCTYPE html>
+@page
 <html>
     <head>
         <title>DemoApp</title>
     </head>
     <body>
-        <app>@(await Html.RenderComponentAsync<DemoApp.Components.App>())</app>
+        <app>@(await Html.RenderComponentAsync<DemoApp.Components.Pages.Index>())</app>
         <script src="_framework/components.server.js"></script>
         <script>
-            window.homePage = {
+            window.hostPage = {
                 updateElement: function(elementId, textValue){
                     var tag = document.getElementById(elementId);
                     if(tag){

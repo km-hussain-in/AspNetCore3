@@ -31,7 +31,7 @@ namespace DemoApp.Components.Pages
         protected void GenerateToken()
         {
             Counter.GetNextCount(VisitorName);
-            Script.InvokeAsync<bool>("homePage.updateElement", "statusOutput", System.DateTime.Now);  
+            Script.InvokeAsync<bool>("hostPage.updateElement", "statusOutput", System.DateTime.Now);  
         } 
     }
 }
