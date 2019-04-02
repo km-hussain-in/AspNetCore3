@@ -24,7 +24,7 @@ namespace DemoApp.Components.Pages
             Counter.Increment += (name, count) => 
             {
                 TokenMessage = $"Generated token {name}#{count + InitialCount}";
-                Invoke(() => StateHasChanged());  
+                Invoke(StateHasChanged);  
             };
         }
 
