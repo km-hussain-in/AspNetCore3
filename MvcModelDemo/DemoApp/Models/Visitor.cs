@@ -6,7 +6,6 @@ namespace DemoApp.Models
 {
     public class Visitor
     {
-        //[Required(ErrorMessage = "Name is required")]
         [StringLength(32, MinimumLength = 4, ErrorMessage = "Name is invalid")]
         public string Id {get; set;}
 
