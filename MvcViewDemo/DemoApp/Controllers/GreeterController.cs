@@ -18,9 +18,9 @@ namespace DemoApp.Controllers
 			lock(names)
 			{
 				names.Add(name);
-				var others = from n in names where n != name select n;
-				return View(others);
+				ViewBag.Others = from n in names where n != name select n;
 			}
+			return View();
 		}
 	}
 	
