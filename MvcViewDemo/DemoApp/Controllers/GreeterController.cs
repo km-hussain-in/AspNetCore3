@@ -5,13 +5,16 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DemoApp.Controllers
 {
+	[Route("/")]
 	public class Greeter : Controller
 	{		
+		[Route("Time")]
 		public IActionResult Time()
 		{
 			return View();
 		}
 		
+		[Route("Greet/{name=World}")]
 		public IActionResult Greet(string name, [FromServices] ISet<string> names)
 		{
 			ViewBag.Visitor = name;

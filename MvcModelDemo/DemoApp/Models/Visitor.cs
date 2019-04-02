@@ -11,7 +11,7 @@ namespace DemoApp.Models
 
         public int Frequency {get; set;} = 1;
 
-		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
         public DateTime Recent {get; set;} = DateTime.Now;
 
         public void Revisit()

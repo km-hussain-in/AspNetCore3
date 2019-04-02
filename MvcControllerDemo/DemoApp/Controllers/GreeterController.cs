@@ -1,12 +1,15 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.Collections.Concurrent;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DemoApp.Controllers
 {
 	public class Greeter : Controller
 	{		
+        private static ConcurrentDictionary<string, int> counters = new ConcurrentDictionary<string, int>();
+
 		public IActionResult Time()
 		{
 			return Content(DateTime.Now.ToString());
@@ -33,7 +36,7 @@ namespace DemoApp.Controllers
 					<ul>
 			");
 			foreach(var item in others)
-				output.Append($"<li><a href='/Count/ForName/{item}'>{item}</li>");
+				output.Append($"<li><a href='/Count/{item}'>{item}</li>");
 			output.Append(
 			@"
 					</ul>
@@ -43,7 +46,27 @@ namespace DemoApp.Controllers
 
 			return Content(output.ToString(), "text/html");
 		}
+
+        public IActionResult Count(string name)
+        {
+            int count;
+            counters.TryGetValue(name, out count);
+            counters[name] = ++count;
+            var output = new System.Text.StringBuilder();
+            output.Append(
+            $@"
+                <html>
+                <head>
+                    <title>DemoApp</title>
+                </head>
+                <body>
+                    <h1>Welcome {name}</h1>
+                    <p>Number of visits is {count}</p>
+                </body>
+            ");
+            return Content(output.ToString(), "text/html");
+        }
+
 	}
-	
 }
 
