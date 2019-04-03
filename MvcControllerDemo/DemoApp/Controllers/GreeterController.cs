@@ -63,9 +63,6 @@ namespace DemoApp.Controllers
                 <body>
                     <h1>Welcome {name}</h1>
                     <p>Number of visits is {count}</p>
-					<p style='font-size:small;font-style:italic'>
-						&copy;2015-{DateTime.Now.Year} {Environment.MachineName}. All rights reserved.
-					</p>
                 </body>
 				</html>
             ");
