@@ -1,0 +1,18 @@
+@page "{name}"
+@{
+	string visitor = (string)RouteData.Values["name"];
+}
+@addTagHelper *, DemoApp
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>DemoApp</title>
+	</head>
+	<body>
+		<h1>Welcome @visitor</h1>
+		<p>
+			Number of visits is <span demo-count-for="@visitor"></span>
+		</p>
+		<vc:copyright start-year="2015"/>
+	</body>
+</html>

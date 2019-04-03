@@ -9,15 +9,14 @@ namespace DemoApp.Controllers
 	public class Greeter : Controller
 	{		
 		[Route("Time")]
-		public IActionResult Time()
+		public IActionResult Clock()
 		{
-			return View();
+			return View("Time");
 		}
 		
 		[Route("Greet/{name=World}")]
 		public IActionResult Greet(string name, [FromServices] ISet<string> names)
 		{
-			ViewBag.Visitor = name;
 			lock(names)
 			{
 				names.Add(name);
@@ -25,6 +24,13 @@ namespace DemoApp.Controllers
 			}
 			return View();
 		}
+
+		[Route("Count/{name}")]
+		public IActionResult Count(string name)
+		{
+			return View();
+		}
+
 	}
 	
 }

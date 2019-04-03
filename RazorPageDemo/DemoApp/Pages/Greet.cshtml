@@ -14,7 +14,6 @@
 		}
 	}
 }
-@addTagHelper *, DemoApp
 <!DOCTYPE html>
 <html>
 	<head>
@@ -22,17 +21,12 @@
 	</head>
 	<body>
 		<h1>Hello @visitor</h1>
-		<p>
-			Number of visits is <span demo-count-for="@visitor"></span>
-		</p>
 		<h3>Other Visitors</h3>
 		<ul>
 			@foreach(var item in NamesOtherThan(visitor))
 			{
-				<li><a href="@item">@item</a></li>	
+				<li><a href="/Count/@item">@item</a></li>	
 			}
 		</ul>
-		<vc:copyright start-year="2015"/>
 	</body>
 </html>
-

@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using System.Linq;
 using System.Collections.Generic;
 using System.Collections.Concurrent;
@@ -6,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DemoApp.Controllers
 {
-	public class Greeter : Controller
+	public class Greeter : ControllerBase
 	{		
         private static ConcurrentDictionary<string, int> counters = new ConcurrentDictionary<string, int>();
 
@@ -23,8 +24,8 @@ namespace DemoApp.Controllers
 				names.Add(name);
 				others = from n in names where n != name select n;
 			}
-			var output = new System.Text.StringBuilder();
-			output.Append(
+			var page = new StringBuilder();
+			page.Append(
 			$@"
 				<html>
 				<head>
@@ -36,15 +37,15 @@ namespace DemoApp.Controllers
 					<ul>
 			");
 			foreach(var item in others)
-				output.Append($"<li><a href='/Count/{item}'>{item}</li>");
-			output.Append(
+				page.Append($"<li><a href='/Count/{item}'>{item}</li>");
+			page.Append(
 			@"
 					</ul>
 				</body>
 				</html>
 			");
 
-			return Content(output.ToString(), "text/html");
+			return Content(page.ToString(), "text/html");
 		}
 
         public IActionResult Count(string name)
@@ -52,8 +53,8 @@ namespace DemoApp.Controllers
             int count;
             counters.TryGetValue(name, out count);
             counters[name] = ++count;
-            var output = new System.Text.StringBuilder();
-            output.Append(
+            var page = new StringBuilder();
+            page.Append(
             $@"
                 <html>
                 <head>
@@ -62,9 +63,13 @@ namespace DemoApp.Controllers
                 <body>
                     <h1>Welcome {name}</h1>
                     <p>Number of visits is {count}</p>
+					<p style='font-size:small;font-style:italic'>
+						&copy;2015-{DateTime.Now.Year} {Environment.MachineName}. All rights reserved.
+					</p>
                 </body>
+				</html>
             ");
-            return Content(output.ToString(), "text/html");
+            return Content(page.ToString(), "text/html");
         }
 
 	}
