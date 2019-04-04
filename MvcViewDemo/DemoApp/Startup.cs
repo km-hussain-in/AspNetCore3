@@ -7,10 +7,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DemoApp
 {
-	using Microsoft.AspNetCore.Mvc;
 	
     public class Startup
     {
