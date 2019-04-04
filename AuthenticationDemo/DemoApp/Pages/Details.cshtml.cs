@@ -38,7 +38,7 @@ namespace DemoApp.Pages
 			_model.SaveChanges(); 
 		}	
 		
-		public async Task<IActionResult> OnPostLogoutAsync()
+		public async Task<IActionResult> OnGetLogoutAsync()
 		{
 			await HttpContext.SignOutAsync();
 			return RedirectToPage("Index");
