@@ -10,7 +10,7 @@ namespace DemoApp.Pages
 	{
 		public IEnumerable<Site> Sites {get; set;}
 		
-		public async void OnGetAsync([FromServices] SiteDbModel model)
+		public async void OnGetAsync([FromServices] SiteDbContext model)
 		{
 			Sites = await model.GetAllSitesAsync();
 		}

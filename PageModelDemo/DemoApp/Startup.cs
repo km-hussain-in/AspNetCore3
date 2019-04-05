@@ -19,7 +19,6 @@ namespace DemoApp
         {
         	services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
         	//services.AddTransient<Models.IVisitorModel, Models.VisitorDocModel>();
-        	services.AddTransient<Models.IVisitorModel, Models.VisitorDbModel>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

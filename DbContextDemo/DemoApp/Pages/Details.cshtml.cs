@@ -11,7 +11,7 @@ namespace DemoApp.Pages
 	{
 		public Site Site {get; set;}
 		
-		public async Task<IActionResult> OnGetAsync(int id, [FromServices] SiteDbModel model)
+		public async Task<IActionResult> OnGetAsync(int id, [FromServices] SiteDbContext model)
 		{
 			Site = await model.GetSiteByIdAsync(id);
 			if(Site == null)

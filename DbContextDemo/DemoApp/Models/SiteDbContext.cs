@@ -31,15 +31,12 @@ namespace DemoApp.Models
 		public ICollection<Visitor> Visitors {get; set;}
 	}
 	
-	public class SiteDbModel : DbContext
+	public class SiteDbContext : DbContext
 	{
 		public DbSet<Site> Sites {get; set;}
-		
-		protected override void OnConfiguring(DbContextOptionsBuilder options)
-		{
-			options.UseSqlite("FileName=sitedb.sqlite");
-		}
-		
+
+		public SiteDbContext(DbContextOptions<SiteDbContext> options) : base(options){}
+				
 		protected override void OnModelCreating(ModelBuilder model)
 		{
 			model.Entity<Visitor>()

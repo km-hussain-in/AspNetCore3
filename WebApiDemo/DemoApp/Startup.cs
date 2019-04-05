@@ -18,8 +18,8 @@ namespace DemoApp
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-        	services.AddDbContext<Models.AppDbContext>(options => options.UseInMemoryDatabase("appdb"));
-        	//services.AddDbContext<Models.AppDbContext>(options => options.UseSqlite("FileName=appdb.sqlite"));
+        	//services.AddDbContext<Models.AppDbContext>(options => options.UseInMemoryDatabase("appdb"));
+        	services.AddDbContext<Models.AppDbContext>(options => options.UseSqlite("FileName=app.db"));
             services.AddMvc().AddNewtonsoftJson();      
         }
 
