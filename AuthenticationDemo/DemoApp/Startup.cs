@@ -20,7 +20,7 @@ namespace DemoApp
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-        	services.AddTransient<Models.AppDbContext>();
+        	services.AddTransient<Data.AppDbContext>();
 
         	services.AddMvc()
         		.SetCompatibilityVersion(CompatibilityVersion.Latest)

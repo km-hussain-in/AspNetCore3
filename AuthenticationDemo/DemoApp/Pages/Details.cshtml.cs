@@ -9,24 +9,24 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace DemoApp.Pages
 {
-	using Models;
+	using Data;
 	
 	public class DetailsModel : PageModel
 	{
-		private AppDbContext _model;
+		private AppDbContext _db;
 		
-		public DetailsModel(AppDbContext model) => _model = model;
+		public DetailsModel(AppDbContext db) => _db = db;
 		
 		public Visitor Visitor {get; set;}
 		
 		public void OnGet()
 		{
-			Visitor = _model.Visitors.Find(HttpContext.User.Identity.Name);
+			Visitor = _db.Visitors.Find(HttpContext.User.Identity.Name);
 		}
 	
 		public void OnPost(string spotName)
 		{
-			Visitor = _model.Visitors.Find(HttpContext.User.Identity.Name);
+			Visitor = _db.Visitors.Find(HttpContext.User.Identity.Name);
 			Visit visit = Visitor.Visits.FirstOrDefault(entry => entry.Spot == spotName);
 			if(visit == null)
 				Visitor.Visits.Add(new Visit(spotName, Visitor));	
@@ -35,7 +35,7 @@ namespace DemoApp.Pages
 				visit.Frequency += 1;
 				visit.Recent = DateTime.Now;
 			}
-			_model.SaveChanges(); 
+			_db.SaveChanges(); 
 		}	
 		
 		public async Task<IActionResult> OnGetLogoutAsync()

@@ -7,7 +7,7 @@ namespace DemoApp.Models
     public class Visitor
     {
         [StringLength(32, MinimumLength = 4, ErrorMessage = "Name is invalid")]
-        public string Id {get; set;}
+        public string Name {get; set;}
 
         public int Frequency {get; set;} = 1;
 

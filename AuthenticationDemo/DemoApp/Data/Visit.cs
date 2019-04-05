@@ -1,6 +1,6 @@
 using System;
 
-namespace DemoApp.Models
+namespace DemoApp.Data
 {
 	public class Visit
 	{

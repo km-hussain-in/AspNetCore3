@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace DemoApp.Pages
 {
-	using Models;
+	using Data;
 	
 	public class IndexModel : PageModel
 	{
