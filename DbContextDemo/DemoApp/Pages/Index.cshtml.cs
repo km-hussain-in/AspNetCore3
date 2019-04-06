@@ -4,15 +4,15 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace DemoApp.Pages
 {
-	using Models;
+	using Data;
 	
 	public class IndexModel : PageModel
 	{
 		public IEnumerable<Site> Sites {get; set;}
 		
-		public async void OnGetAsync([FromServices] SiteDbContext model)
+		public async void OnGetAsync([FromServices] SiteDbContext db)
 		{
-			Sites = await model.GetAllSitesAsync();
+			Sites = await db.GetAllSitesAsync();
 		}
 	}
 }

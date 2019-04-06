@@ -5,15 +5,15 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace DemoApp.Pages
 {
-	using Models;
+	using Data;
 	
 	public class DetailsModel : PageModel
 	{
 		public Site Site {get; set;}
 		
-		public async Task<IActionResult> OnGetAsync(int id, [FromServices] SiteDbContext model)
+		public async Task<IActionResult> OnGetAsync(int id, [FromServices] SiteDbContext db)
 		{
-			Site = await model.GetSiteByIdAsync(id);
+			Site = await db.GetSiteByIdAsync(id);
 			if(Site == null)
 				return NotFound();
 			return Page();

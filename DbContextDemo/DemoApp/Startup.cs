@@ -19,7 +19,7 @@ namespace DemoApp
         public void ConfigureServices(IServiceCollection services)
         {
         	services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
-        	services.AddDbContext<Models.SiteDbContext>(options => options.UseSqlite("FileName=site.db"));
+        	services.AddDbContext<Data.SiteDbContext>(options => options.UseSqlite("FileName=site.db"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

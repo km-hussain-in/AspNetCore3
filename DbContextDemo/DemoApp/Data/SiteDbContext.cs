@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace DemoApp.Models
+namespace DemoApp.Data
 {
 	[Table("Visitors")]
 	public class Visitor
@@ -43,8 +43,11 @@ namespace DemoApp.Models
 				.HasKey(e => new {e.Name, e.SiteId});
 		}
 		
-		public async Task<IEnumerable<Site>> GetAllSitesAsync() => await Sites.ToListAsync();
+		public Task<List<Site>> GetAllSitesAsync() => Sites.ToListAsync();
 		
+		public Task<Site> GetSiteByIdAsync(int siteId) => Sites.Include(p => p.Visitors).SingleOrDefaultAsync(e => e.Id == siteId);
+
+		/*
 		public async Task<Site> GetSiteByIdAsync(int siteId)
 		{
 			Site site = await Sites.FindAsync(siteId);
@@ -52,7 +55,7 @@ namespace DemoApp.Models
 				await Entry(site).Collection(e => e.Visitors).LoadAsync();
 			return site;
 		}
+		*/
 	}
 }
-
 
