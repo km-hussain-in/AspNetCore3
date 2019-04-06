@@ -29,7 +29,6 @@ namespace DemoApp
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseFileServer();
             app.UseRouting(routes =>
             {
             	routes.MapRazorPages();
