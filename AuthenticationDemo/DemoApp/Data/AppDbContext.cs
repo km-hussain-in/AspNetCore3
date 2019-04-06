@@ -10,8 +10,8 @@ namespace DemoApp.Data
 				
 		protected override void OnConfiguring(DbContextOptionsBuilder options)
 		{
-			options.UseSqlite("FileName=app.db");
-			options.UseLazyLoadingProxies();
+			options.UseSqlite("FileName=app.db")
+				.UseLazyLoadingProxies();
 		}
 	}
 	
