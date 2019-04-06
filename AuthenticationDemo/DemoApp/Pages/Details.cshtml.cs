@@ -19,14 +19,14 @@ namespace DemoApp.Pages
 		
 		public Visitor Visitor {get; set;}
 		
-		public void OnGet()
+		public async void OnGetAsync()
 		{
-			Visitor = _db.Visitors.Find(HttpContext.User.Identity.Name);
+			Visitor = await _db.Visitors.FindAsync(HttpContext.User.Identity.Name);
 		}
 	
-		public void OnPost(string spotName)
+		public async void OnPostAsync(string spotName)
 		{
-			Visitor = _db.Visitors.Find(HttpContext.User.Identity.Name);
+			Visitor = await _db.Visitors.FindAsync(HttpContext.User.Identity.Name);
 			Visit visit = Visitor.Visits.FirstOrDefault(entry => entry.Spot == spotName);
 			if(visit == null)
 				Visitor.Visits.Add(new Visit(spotName, Visitor));	
@@ -35,7 +35,7 @@ namespace DemoApp.Pages
 				visit.Frequency += 1;
 				visit.Recent = DateTime.Now;
 			}
-			_db.SaveChanges(); 
+			await _db.SaveChangesAsync(); 
 		}	
 		
 		public async Task<IActionResult> OnGetLogoutAsync()

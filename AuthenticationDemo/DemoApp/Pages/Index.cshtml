@@ -17,12 +17,12 @@
 				<tr>
 					<td><b>Password:</b></td>
 					<td><input type="password" asp-for="Input.Password" required="required"/></td>
-					<td><input type="submit" name="signCommand" value="Sign-In"/></td>
+					<td><input type="submit" value="Sign-In" asp-page-handler="signIn"/></td>
 				</tr>
 				<tr>
 					<td><b>Confirm:</b></td>
 					<td><input type="password" asp-for="Input.ConfirmPassword"/></td>
-					<td><input type="submit" name="signCommand" value="Sign-Up"/></td>
+					<td><input type="submit" value="Sign-Up" asp-page-handler="signUp"/></td>
 				</tr>
 			</table>
 			<div/>
