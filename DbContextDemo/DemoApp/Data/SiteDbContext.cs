@@ -44,10 +44,11 @@ namespace DemoApp.Data
 		}
 		
 		public Task<List<Site>> GetAllSitesAsync() => Sites.ToListAsync();
-		
-		public Task<Site> GetSiteByIdAsync(int siteId) => Sites.Include(p => p.Visitors).SingleOrDefaultAsync(e => e.Id == siteId);
 
-		/*
+		//eager loading of child entities		
+		//public Task<Site> GetSiteByIdAsync(int siteId) => Sites.Include(p => p.Visitors).SingleOrDefaultAsync(e => e.Id == siteId);
+
+		//explicit loading of child entities
 		public async Task<Site> GetSiteByIdAsync(int siteId)
 		{
 			Site site = await Sites.FindAsync(siteId);
@@ -55,7 +56,6 @@ namespace DemoApp.Data
 				await Entry(site).Collection(e => e.Visitors).LoadAsync();
 			return site;
 		}
-		*/
 	}
 }
 
