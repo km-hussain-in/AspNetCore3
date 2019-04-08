@@ -6,7 +6,7 @@ namespace DemoApp.Models
 	{
 		public DbSet<Feedback> Feedbacks {get; set;}
 		
-		public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+		public AppDbContext(DbContextOptions options) : base(options)
 		{
 			Database.EnsureCreated();
 		}

@@ -35,7 +35,7 @@ namespace DemoApp.Data
 	{
 		public DbSet<Site> Sites {get; set;}
 
-		public SiteDbContext(DbContextOptions<SiteDbContext> options) : base(options){}
+		public SiteDbContext(DbContextOptions options) : base(options){}
 				
 		protected override void OnModelCreating(ModelBuilder model)
 		{
