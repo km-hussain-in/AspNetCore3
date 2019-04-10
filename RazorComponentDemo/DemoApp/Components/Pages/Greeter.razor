@@ -4,7 +4,18 @@
 <p>
     <b>Your Name: </b>
     <input required="required" bind="@VisitorName"/>
-    <button onclick="@GenerateToken">Generate</button>
+    <button onclick="@UpdateCounter">Greet</button>
 </p>
-<p>@TokenMessage</p>
-
+<table border="1">
+    <tr>
+        <th>Visitor Name</th>
+        <th>Greet Count</th>
+    </tr>
+    @foreach(var entry in Counter)
+    {
+        <tr>
+            <td>@entry.Name</td>
+            <td>@entry.Count</td>
+        </tr>
+    }
+</table>

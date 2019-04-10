@@ -1,3 +1,5 @@
+using System.Linq;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
@@ -8,30 +10,26 @@ namespace DemoApp.Components.Pages
     public class GreeterBase : ComponentBase
     {
         [Inject]
-        private CounterService Counter {get; set;}
+        protected CounterService Counter {get; set;}
 
         [Inject]
         private IJSRuntime Script {get; set;}
 
         [Parameter]
-        public int InitialCount {get; set;}
+        public string TimeFormatString {get; set;}
 
         protected string VisitorName;
-        protected string TokenMessage;
     
         protected override void OnInit()
         {
-            Counter.Increment += (name, count) => 
-            {
-                TokenMessage = $"Generated token {name}#{count + InitialCount}";
-                Invoke(StateHasChanged);  
-            };
+            Counter.Increment += (s, e) => Invoke(StateHasChanged);
         }
 
-        protected void GenerateToken()
+        protected void UpdateCounter()
         {
             Counter.GetNextCount(VisitorName);
-            Script.InvokeAsync<bool>("hostPage.updateElement", "statusOutput", System.DateTime.Now);  
+            string text = string.Format(TimeFormatString, System.DateTime.Now);
+            Script.InvokeAsync<bool>("hostPage.updateElement", "statusOutput", text);                 
         } 
     }
 }
