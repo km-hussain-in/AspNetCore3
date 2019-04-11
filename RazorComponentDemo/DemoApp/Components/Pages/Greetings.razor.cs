@@ -5,7 +5,7 @@ namespace DemoApp.Components.Pages
 {
     using Services;
 
-    public class VisitorsBase : ComponentBase
+    public class GreetingsBase : ComponentBase
     {
         [Inject]
         private CounterService Counter {get; set;}
