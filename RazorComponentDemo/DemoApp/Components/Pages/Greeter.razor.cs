@@ -14,10 +14,13 @@ namespace DemoApp.Components.Pages
         private IJSRuntime Script {get; set;}
 
         protected string VisitorName;
+
+        protected string GreetMessage;
     
         protected void CountAndGreet()
         {
-            Counter.GetNextCount(VisitorName);
+            int count = Counter.GetNextCount(VisitorName);
+            GreetMessage = $"Number of greetings is {count}";
             Script.InvokeAsync<bool>("hostPage.updateElement", "headerOutput", $"Hello {VisitorName}");                 
         } 
     }
