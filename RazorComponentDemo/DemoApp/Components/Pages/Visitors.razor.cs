@@ -10,7 +10,7 @@ namespace DemoApp.Components.Pages
         [Inject]
         private CounterService Counter {get; set;}
 
-        protected IEnumerable<CounterEntry> Greeted;
+        protected IEnumerable<CounterEventArgs> Greeted;
     
         protected override void OnInit()
         {

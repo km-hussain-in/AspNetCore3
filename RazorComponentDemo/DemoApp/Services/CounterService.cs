@@ -4,24 +4,26 @@ using System.Collections.Generic;
 
 namespace DemoApp.Services
 {
-    public class CounterEntry
+    public class CounterEventArgs : EventArgs
     {
         public string Name {get;}
 
         public int Count {get;}
 
-        public CounterEntry(KeyValuePair<string, int> pair)
+        public CounterEventArgs(string name, int count)
         {
-            Name = pair.Key;
-            Count = pair.Value;
+            Name = name;
+            Count = count;
         }
+
+        internal CounterEventArgs(KeyValuePair<string, int> pair) : this(pair.Key, pair.Value) {}
     }
 
     public class CounterService
     {
         private IDictionary<string, int> counters = new Dictionary<string, int>();
 
-        public event EventHandler Increment;
+        public event EventHandler<CounterEventArgs> Increment;
 
         public virtual int GetNextCount(string name)
         {
@@ -30,11 +32,11 @@ namespace DemoApp.Services
                 int count;
                 counters.TryGetValue(name, out count);
                 counters[name] = ++count;
-                Increment?.Invoke(this, EventArgs.Empty);
+                Increment?.Invoke(this, new CounterEventArgs(name, count));
                 return count;
             }
         }
 
-        public IEnumerable<CounterEntry> Entries => counters.Select(k => new CounterEntry(k));
+        public IEnumerable<CounterEventArgs> Entries => counters.Select(pair => new CounterEventArgs(pair));
     }
 }
