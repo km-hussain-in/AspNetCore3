@@ -15,7 +15,7 @@ namespace DemoApp.Components.Pages
 
         protected string VisitorName;
     
-        protected void UpdateCounter()
+        protected void CountAndGreet()
         {
             Counter.GetNextCount(VisitorName);
             Script.InvokeAsync<bool>("hostPage.updateElement", "headerOutput", $"Hello {VisitorName}");                 
