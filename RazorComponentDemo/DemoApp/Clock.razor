@@ -1,0 +1,15 @@
+@page "/clock"
+<b>
+    @if(TimeFormatString == null)
+    {
+        <span>@DateTime.Now</span>
+    }
+    else
+    {
+        <span>@string.Format(TimeFormatString, DateTime.Now)</span>
+    }
+</b>
+@functions {
+    [Parameter]
+    public string TimeFormatString {get; set;}
+}

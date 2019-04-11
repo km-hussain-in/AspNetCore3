@@ -1,0 +1,8 @@
+@page "/greeter"
+@layout Master
+@inherits DemoApp.Components.Pages.GreeterBase
+<p>
+    <b>Your Name: </b>
+    <input required="required" bind="@VisitorName"/>
+    <button onclick="@UpdateCounter">Greet</button>
+</p>

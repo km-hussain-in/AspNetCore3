@@ -1,0 +1,16 @@
+@page "/visitors"
+@layout Master
+@inherits DemoApp.Components.Pages.VisitorsBase
+<table border="1">
+    <tr>
+        <th>Visitor Name</th>
+        <th>Greet Count</th>
+    </tr>
+    @foreach(var item in Greeted)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Count</td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,25 @@
+@page "{*clientPath}"
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DemoApp</title>
+    </head>
+    <body>
+        <h1 id="headerOutput">Welcome Visitor</h1>
+        <app>@(await Html.RenderComponentAsync<DemoApp.Components.App>())</app>
+        <script src="_framework/components.server.js"></script>
+        <script>
+            window.hostPage = {
+                updateElement: function(elementId, htmlValue){
+                    var tag = document.getElementById(elementId);
+                    if(tag){
+                        tag.innerHTML = htmlValue;
+                        return true;
+                    }
+                    return false;
+                }
+            };            
+        </script>
+        <p id="footerOutput"></p>
+    </body>
+</html>
