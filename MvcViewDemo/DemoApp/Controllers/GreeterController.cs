@@ -31,6 +31,12 @@ namespace DemoApp.Controllers
 			return View();
 		}
 
+		[Route("{*other}")]
+		public IActionResult Fail(string other)
+		{
+			return Content($"Sorry, cannot handle {other} path!");
+		}
+
 	}
 	
 }
