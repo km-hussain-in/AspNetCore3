@@ -9,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ClientApp
+namespace DemoApp.Client
 {
     public class Startup
     {

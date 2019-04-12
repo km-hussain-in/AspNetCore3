@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace ClientApp.Models
+namespace DemoApp.Client.Models
 {
     [DataContract]
     public class Feedback

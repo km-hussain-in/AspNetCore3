@@ -1,0 +1,49 @@
+@page
+@model DemoApp.Client.Pages.IndexModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DemoApp-Client</title>
+		<style>
+			table {
+				border-collapse: collapse;
+			}
+			th, td{
+				padding:4px;
+			}
+			button {
+				background: none;
+				border: none;
+				text-decoration: underline;
+				padding: 0;
+				color: blue;
+				cursor: pointer;
+			}
+		</style>
+    </head>
+	<body>
+    <h1>Feedbacks</h1>
+	<table border="1">
+		<form method="POST">
+			<tr>
+				<th>From</th>
+				<th>Comment</th>
+				<th>Rating</th>
+			</tr>
+			@foreach(var item in Model.Feedbacks)
+			{
+				<tr>
+					<td>@item.Name</td>
+					<td>@item.Comment</td>
+					<td>
+						<span>@item.Rating</span>
+						<button type="submit" name="from" value="@item.Name">Cycle</button>
+					</td>
+				</tr>
+			}
+		</form>
+	</table>
+	</body>
+</html>

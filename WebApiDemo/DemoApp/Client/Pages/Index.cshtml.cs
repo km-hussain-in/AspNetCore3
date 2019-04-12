@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace ClientApp.Pages
+namespace DemoApp.Client.Pages
 {
 	using Models;
 
@@ -22,14 +22,11 @@ namespace ClientApp.Pages
             Feedbacks = await _model.ReadFeedbacksAsync();
 		}
 
-		public async Task<IActionResult> OnGetChangeAsync(string id, string direction)
+		public async Task<IActionResult> OnPostAsync(string from)
 		{
 			Feedbacks = await _model.ReadFeedbacksAsync();
-			var feedback = Feedbacks.FirstOrDefault(e => e.Name == id);
-			if(direction == "up" && feedback.Rating < 5)
-				feedback.Rating += 1;
-			if(direction == "down" && feedback.Rating > 1)
-				feedback.Rating -= 1;			
+			var feedback = Feedbacks.FirstOrDefault(e => e.Name == from);
+			feedback.Rating = 1 + feedback.Rating % 5;
 			await _model.WriteFeedbackAsync(feedback);
 			return Page();
 		}
