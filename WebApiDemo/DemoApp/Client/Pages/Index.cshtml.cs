@@ -28,7 +28,7 @@ namespace DemoApp.Client.Pages
 			var feedback = Feedbacks.FirstOrDefault(e => e.Name == from);
 			feedback.Rating = 1 + feedback.Rating % 5;
 			await _model.WriteFeedbackAsync(feedback);
-			return Page();
+			return RedirectToPage("Index");
 		}
 	}
 }

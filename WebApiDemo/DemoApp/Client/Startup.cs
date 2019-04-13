@@ -8,18 +8,26 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 namespace DemoApp.Client
 {
     public class Startup
     {
+        private Uri feedbacksBaseUri;
+
+        public Startup(IConfiguration configuration)
+        {
+            feedbacksBaseUri = new Uri(configuration["feedbacksServiceEndpoint"]);
+        }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Latest);
-            services.AddHttpClient<Models.FeedbackModel>(options => options.BaseAddress = new Uri("http://localhost:5000/"));
+            services.AddHttpClient<Models.FeedbackModel>(options => options.BaseAddress = feedbacksBaseUri);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -29,7 +37,7 @@ namespace DemoApp.Client
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseFileServer();
             app.UseRouting(routes =>
             {
                 routes.MapRazorPages();

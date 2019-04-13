@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DemoApp - Client</title>
+    </head>
+    <body>
+        <h1>Welcome Visitor</h1>
+        <form>
+            <p>
+                <b>Name: </b>
+                <input type="text" id="nameText" required="required"/>
+            </p>
+            <p>
+                <b>Comment</b><br/>
+                <textarea id="commentText" cols="32" rows="4"></textarea><br/>
+                <input type="button" id="submitButton" value="Submit"/>
+            </p>
+        </form>
+        <script>
+            let nameText = document.getElementById("nameText");
+            let commentText = document.getElementById("commentText");
+            document.getElementById("submitButton").onclick = async function(){
+                const request = {
+                    method: 'post',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        name: nameText.value,
+                        comment: commentText.value,
+                        rating: 1
+                    })
+                };
+                let response = await fetch('http://localhost:5000/rest/feedbacks', request);
+                if(response.ok)
+                    window.location.replace("/Index");
+                else
+                    alert("ERROR: " + response.statusText);
+            };
+        </script>
+    </body>
+</html>
