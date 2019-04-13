@@ -30,10 +30,10 @@ namespace DemoApp.Client.Models
             return await response.Content.ReadAsAsync<IEnumerable<Feedback>>();
         }
 
-        public async Task<string> WriteFeedbackAsync(Feedback info)
+        public async Task<int> WriteFeedbackAsync(Feedback info)
         {
             var response = await _client.PostAsJsonAsync("rest/feedbacks", info);
-            return await response.Content.ReadAsStringAsync();
+            return (int)response.StatusCode;
         }
     }
 }

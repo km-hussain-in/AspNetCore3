@@ -27,6 +27,7 @@
                 <textarea id="commentText" cols="32" rows="4"></textarea><br/>
                 <input type="button" id="writeButton" value="Write"/>
             </p>
+            <p id="statusOutput"></p>
         </form>
         <p>
             <a href="index.html">View Feedbacks</a>
@@ -35,14 +36,16 @@
             let nameText = document.getElementById("nameText");
             let commentText = document.getElementById("commentText");
             let ratingSelect = document.getElementById("ratingSelect");
+            let statusOutput = document.getElementById("statusOutput");
             document.getElementById("readButton").onclick = async function(){
                 let response = await fetch(`rest/feedbacks/${nameText.value}`);
                 if(response.ok){
                     let result = await response.json();
                     commentText.value = result.comment;
                     ratingSelect.value = result.rating;
+                    statusOutput.innerText = "";
                 }else
-                    commentText.value = response.statusText;
+                    statusOutput.innerText = response.statusText;
             };
             document.getElementById("writeButton").onclick = async function(){
                 const request = {
@@ -56,9 +59,9 @@
                 };
                 let response = await fetch('rest/feedbacks', request);
                 if(response.ok)
-                    commentText.value = await response.text();
+                    statusOutput.innerText = response.Status == 201 ? "Feedback Created" : "Feedback Updated";              
                 else
-                    commentText.value = response.statusText;
+                    statusOutput.innerText = response.statusText;
             };
         </script>
     </body>

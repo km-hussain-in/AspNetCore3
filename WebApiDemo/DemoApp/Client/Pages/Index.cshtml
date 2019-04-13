@@ -24,26 +24,26 @@
 		</style>
     </head>
 	<body>
-    <h1>Feedbacks</h1>
-	<table border="1">
+		<h1>Feedbacks</h1>
 		<form method="POST">
-			<tr>
-				<th>From</th>
-				<th>Comment</th>
-				<th>Rating</th>
-			</tr>
-			@foreach(var item in Model.Feedbacks)
-			{
+			<table border="1">
 				<tr>
-					<td>@item.Name</td>
-					<td>@item.Comment</td>
-					<td>
-						<span>@item.Rating</span>
-						<button type="submit" name="from" value="@item.Name">Cycle</button>
-					</td>
+					<th>From</th>
+					<th>Comment</th>
+					<th>Rating</th>
 				</tr>
-			}
+				@foreach(var item in Model.Feedbacks)
+				{
+					<tr>
+						<td>@item.Name</td>
+						<td>@item.Comment</td>
+						<td>
+							<span>@item.Rating</span>
+							<button type="submit" name="from" value="@item.Name">Cycle</button>
+						</td>
+					</tr>
+				}
+			</table>
 		</form>
-	</table>
 	</body>
 </html>

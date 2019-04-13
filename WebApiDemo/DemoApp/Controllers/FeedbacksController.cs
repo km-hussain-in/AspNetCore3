@@ -31,23 +31,23 @@ namespace DemoApp.Controllers
 		}
 		
 		[HttpPost]
-		public string WriteFeedback(Feedback input)
+		public IActionResult WriteFeedback(Feedback input)
 		{
-			string action;
+			IActionResult result;
 			Feedback feedback = _model.Feedbacks.Find(input.Name);
 			if(feedback == null)
 			{
 				_model.Feedbacks.Add(input);
-				action = "Accepted";	
+				result = Created($"/rest/feedbacks/{input.Name}", input);
 			}
 			else
 			{
 				feedback.Comment = input.Comment;
 				feedback.Rating = input.Rating;
-				action = "Revised";	
+				result = Ok(feedback);
 			}
 			_model.SaveChanges();
-			return action;
+			return result;
 		}
 	}
 	
