@@ -18,7 +18,7 @@ namespace DemoApp
         public void ConfigureServices(IServiceCollection services)
         {
         	services.AddMvc();
-        	services.AddTransient<Models.IVisitorModel, Models.VisitorDocModel>();
+        	services.AddScoped<Models.IVisitorModel, Models.VisitorDocModel>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

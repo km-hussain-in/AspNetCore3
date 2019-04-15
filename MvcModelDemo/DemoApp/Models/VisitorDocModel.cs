@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace DemoApp.Models
 {
-    public class VisitorDocModel : IVisitorModel
+    public class VisitorDocModel : IVisitorModel, IDisposable
     {
         const string document = "appdoc.xml";
         
@@ -34,10 +34,9 @@ namespace DemoApp.Models
                 Visitors.Add(value);
             else
                 visitor.Revisit();
-            SaveChanges();
         }
 
-        public void SaveChanges()
+        public void Dispose()
         {
             using(var writer = new StreamWriter(document))
                 serializer.Serialize(writer, Visitors);
