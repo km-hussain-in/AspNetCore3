@@ -3,19 +3,19 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DemoApp.TagHelpers
 {
-	[HtmlTargetElement("span", Attributes = "demo-count-for")]
+	[HtmlTargetElement("span", Attributes = "app-count-for")]
 	public class CounterTagHelper : TagHelper
 	{
 		private static ConcurrentDictionary<string, int> counters = new ConcurrentDictionary<string, int>();
 		
-		public string DemoCountFor {get; set;}
+		public string AppCountFor {get; set;}
 		
 		public override void Process(TagHelperContext context, TagHelperOutput output)
 		{
 			int count;
-			counters.TryGetValue(DemoCountFor, out count);
-			counters[DemoCountFor] = ++count;
-			output.Attributes.RemoveAll("demo-count-for");
+			counters.TryGetValue(AppCountFor, out count);
+			counters[AppCountFor] = ++count;
+			output.Attributes.RemoveAll("app-count-for");
 			output.Content.SetContent(count.ToString());
 		}
 	}
