@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DemoApp.Controllers
 {
-	public class Greeter : ControllerBase
+	public class MasterController : ControllerBase
 	{		
         private static ConcurrentDictionary<string, int> counters = new ConcurrentDictionary<string, int>();
 

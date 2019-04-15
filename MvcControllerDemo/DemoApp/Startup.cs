@@ -31,7 +31,7 @@ namespace DemoApp
 
             app.UseRouting(routes =>
             {
-            	routes.MapControllerRoute("greeting", "{action}/{name}", new {controller="Greeter", name="World"});
+            	routes.MapControllerRoute("master", "{action}/{name}", new {controller="Master", name="World"});
             });
         }
     }

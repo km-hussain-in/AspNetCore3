@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace DemoApp.Controllers
 {
 	[Route("/")]
-	public class Greeter : Controller
+	public class MasterController : Controller
 	{		
 		[Route("Time")]
 		public IActionResult Clock()
