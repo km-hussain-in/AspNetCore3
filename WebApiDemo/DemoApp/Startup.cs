@@ -25,7 +25,7 @@ namespace DemoApp
             {
                 options.AddPolicy("DemoAppCorsPolicy", builder => 
                 {
-                    builder.WithOrigins("http://localhost:6000")
+                    builder.AllowAnyOrigin() //WithOrigins("http://localhost:6000")
                         //.AllowAnyMethod()
                         //.AllowAnyHeader()
                         ;
