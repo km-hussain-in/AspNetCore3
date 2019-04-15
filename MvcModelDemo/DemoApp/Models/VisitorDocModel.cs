@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using System.Linq;
 using System.Xml.Serialization;
 using System.Collections.Generic;
 
@@ -29,7 +28,7 @@ namespace DemoApp.Models
 
         public void WriteVisitor(Visitor value)
         {
-            Visitor visitor = Visitors.FirstOrDefault(entry => entry.Name == value.Name);
+            Visitor visitor = Visitors.Find(entry => entry.Name == value.Name);
             if(visitor == null)
                 Visitors.Add(value);
             else
