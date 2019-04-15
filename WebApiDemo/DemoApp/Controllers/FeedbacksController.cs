@@ -15,30 +15,31 @@ namespace DemoApp.Controllers
 		
 		public FeedbacksController(AppDbContext model) => _model = model;
 		
-		[HttpGet]
-		public IEnumerable<Feedback> ReadFeedbacks()
+		[HttpGet("{site}")]
+		public IEnumerable<Feedback> ReadFeedbacks(string site)
 		{
-			return _model.Feedbacks.ToList();
+			return _model.Feedbacks.Where(e => e.Site == site).ToList();
 		}
 		
-		[HttpGet("{id}")]
-		public ActionResult<Feedback> ReadFeedback(string id)
+		[HttpGet("{site}/{name}")]
+		public ActionResult<Feedback> ReadFeedback(string site, string name)
 		{
-			Feedback feedback = _model.Feedbacks.Find(id);
+			Feedback feedback = _model.Feedbacks.FirstOrDefault(e => e.Site == site && e.Name == name);
 			if(feedback == null)
 				return NotFound();
 			return feedback;
 		}
 		
-		[HttpPost]
-		public IActionResult WriteFeedback(Feedback input)
+		[HttpPost("{site}")]
+		public IActionResult WriteFeedback(string site, Feedback input)
 		{
 			IActionResult result;
-			Feedback feedback = _model.Feedbacks.Find(input.Name);
+			Feedback feedback = _model.Feedbacks.FirstOrDefault(e => e.Site == site && e.Name == input.Name);
 			if(feedback == null)
 			{
+				input.Site = site;
 				_model.Feedbacks.Add(input);
-				result = Created($"/rest/feedbacks/{input.Name}", input);
+				result = Created($"/rest/feedbacks/{site}/{input.Name}", input);
 			}
 			else
 			{

@@ -15,20 +15,29 @@ namespace DemoApp.Client.Pages
 
 		public IndexModel(FeedbackModel model) => _model = model;
 
-		public IEnumerable<Feedback> Feedbacks {get; set;}
+		[BindProperty]
+		public Feedback Input {get; set;}
 
-		public async Task OnGetAsync()
+		public string Output {get; set;}
+
+		public void OnGet()
 		{
-            Feedbacks = await _model.ReadFeedbacksAsync();
+			if(Input == null)
+				Input = new Feedback();
 		}
 
-		public async Task<IActionResult> OnPostAsync(string from)
+		public async Task OnPostAsync(string operation)
 		{
-			Feedbacks = await _model.ReadFeedbacksAsync();
-			var feedback = Feedbacks.FirstOrDefault(e => e.Name == from);
-			feedback.Rating = 1 + feedback.Rating % 5;
-			await _model.WriteFeedbackAsync(feedback);
-			return RedirectToPage("Index");
+			if(operation == "Read")
+			{
+            	Feedback feedback = await _model.ReadFeedbackAsync(Input.Name);
+				Output = feedback?.Comment ?? "Not Submitted";
+			}
+			else
+			{
+				int status = await _model.WriteFeedbackAsync(Input);
+				Output = status == 201 ? "Added" : "Changed";
+			}
 		}
 	}
 }

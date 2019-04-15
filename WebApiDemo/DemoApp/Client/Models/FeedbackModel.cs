@@ -15,7 +15,7 @@ namespace DemoApp.Client.Models
         public string Comment {get; set;}
 
         [DataMember(Name = "rating")]
-        public int Rating {get; set;}
+        public int Rating {get;} = 5;
     }
 
     public class FeedbackModel
@@ -24,15 +24,17 @@ namespace DemoApp.Client.Models
 
         public FeedbackModel(HttpClient client) => _client = client;
 
-        public async Task<IEnumerable<Feedback>> ReadFeedbacksAsync()
+        public async Task<Feedback> ReadFeedbackAsync(string name)
         {
-            var response = await _client.GetAsync("rest/feedbacks");
-            return await response.Content.ReadAsAsync<IEnumerable<Feedback>>();
+            var response = await _client.GetAsync($"rest/feedbacks/secondary/{name}");
+            if(response.IsSuccessStatusCode)
+                return await response.Content.ReadAsAsync<Feedback>();
+            return null;
         }
 
         public async Task<int> WriteFeedbackAsync(Feedback info)
         {
-            var response = await _client.PostAsJsonAsync("rest/feedbacks", info);
+            var response = await _client.PostAsJsonAsync("rest/feedbacks/secondary", info);
             return (int)response.StatusCode;
         }
     }

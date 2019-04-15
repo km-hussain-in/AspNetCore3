@@ -1,49 +1,33 @@
 @page
 @model DemoApp.Client.Pages.IndexModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-
 <!DOCTYPE html>
 <html>
     <head>
-        <title>DemoApp-Client</title>
-		<style>
-			table {
-				border-collapse: collapse;
-			}
-			th, td{
-				padding:4px;
-			}
-			button {
-				background: none;
-				border: none;
-				text-decoration: underline;
-				padding: 0;
-				color: blue;
-				cursor: pointer;
-			}
-		</style>
+        <title>DemoApp - Client</title>
     </head>
-	<body>
-		<h1>Feedbacks</h1>
-		<form method="POST">
-			<table border="1">
-				<tr>
-					<th>From</th>
-					<th><a href="cross.html">Comment</a></th>
-					<th>Rating</th>
-				</tr>
-				@foreach(var item in Model.Feedbacks)
-				{
-					<tr>
-						<td>@item.Name</td>
-						<td>@item.Comment</td>
-						<td>
-							<span>@item.Rating</span>
-							<button type="submit" name="from" value="@item.Name">Cycle</button>
-						</td>
-					</tr>
-				}
-			</table>
-		</form>
-	</body>
+    <body>
+        <h1>Welcome Visitor</h1>
+        <form method="POST">
+            <p>
+                <b>Name: </b>
+                <input type="text" asp-for="Input.Name" required="required"/>
+                <input type="submit" name="operation" value="Read"/>
+            </p>
+            <p>
+                @if(Model.Output != null)
+                {
+                    <b>Comment: </b><i>@Model.Output</i>
+                }
+            </p>
+            <p>
+                <b>New Comment</b><br/>
+                <textarea asp-for="Input.Comment"></textarea><br/>
+                <input type="submit" name="operation" value="Write"/>
+            </p>
+        </form>
+        <p>
+            <a href="list.html">All Feedbacks</a>
+        </p>
+    </body>
 </html>

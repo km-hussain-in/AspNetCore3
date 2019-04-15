@@ -26,8 +26,9 @@ namespace DemoApp
                 options.AddPolicy("DemoAppCorsPolicy", builder => 
                 {
                     builder.WithOrigins("http://localhost:6000")
-                        .AllowAnyMethod()
-                        .AllowAnyHeader();
+                        //.AllowAnyMethod()
+                        //.AllowAnyHeader()
+                        ;
                 });
             });
         }

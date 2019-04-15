@@ -4,7 +4,10 @@ namespace DemoApp.Models
 {
 	public class Feedback
 	{
-		[Key]
+		public int Id {get; set;}
+
+		public string Site {get; set;}
+
 		public string Name {get; set;}
 		
 		[StringLength(128)]

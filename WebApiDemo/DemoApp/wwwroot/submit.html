@@ -38,7 +38,7 @@
             let ratingSelect = document.getElementById("ratingSelect");
             let statusOutput = document.getElementById("statusOutput");
             document.getElementById("readButton").onclick = async function(){
-                let response = await fetch(`rest/feedbacks/${nameText.value}`);
+                let response = await fetch(`rest/feedbacks/primary/${nameText.value}`);
                 if(response.ok){
                     let result = await response.json();
                     commentText.value = result.comment;
@@ -57,9 +57,9 @@
                         rating: ratingSelect.value
                     })
                 };
-                let response = await fetch('rest/feedbacks', request);
+                let response = await fetch('rest/feedbacks/primary', request);
                 if(response.ok)
-                    statusOutput.innerText = response.Status == 201 ? "Feedback Created" : "Feedback Updated";              
+                    statusOutput.innerText = response.status == 201 ? "Feedback Created" : "Feedback Updated";              
                 else
                     statusOutput.innerText = response.statusText;
             };
