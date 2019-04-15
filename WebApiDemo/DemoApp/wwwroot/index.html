@@ -15,10 +15,9 @@
                 let response = await fetch('rest/feedbacks/primary');
                 let content = await response.json();
                 for(let i in content){
-                    let stars = '*'.repeat(content[i].rating);
                     let feedbacksListItem = document.createElement("li");
                     feedbacksListItem.innerHTML = `<b>${content[i].comment}</b><br/>`
-                        + `- <i>${content[i].name}</i> [${stars}]<hr/>`;
+                        + `- <i>${content[i].from}</i> [Rated: ${content[i].rating} / 5]<hr/>`;
                     feedbacksList.appendChild(feedbacksListItem);
                 }
             };

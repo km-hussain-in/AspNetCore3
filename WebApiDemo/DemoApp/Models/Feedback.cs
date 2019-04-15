@@ -8,13 +8,15 @@ namespace DemoApp.Models
 
 		public string Site {get; set;}
 
-		public string Name {get; set;}
-		
-		[StringLength(128)]
-		public string Comment {get; set;}
-		
+		[Required]
+		public string From {get; set;}
+				
 		[Range(1, 5)]
 		public int Rating {get; set;}
+
+		[StringLength(128)]
+		public string Comment {get; set;}
+
 	}
 	
 }

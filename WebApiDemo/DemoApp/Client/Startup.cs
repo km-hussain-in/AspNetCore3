@@ -27,7 +27,7 @@ namespace DemoApp.Client
         {
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Latest);
-            services.AddHttpClient<Models.FeedbackModel>(options => options.BaseAddress = feedbacksBaseUri);
+            services.AddHttpClient<Models.RatingModel>(options => options.BaseAddress = feedbacksBaseUri);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

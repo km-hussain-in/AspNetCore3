@@ -4,7 +4,7 @@
         <title>DemoApp</title>
     </head>
     <body>
-        <h1>Welcome Visitor</h1>
+        <h1>Submit Feedback</h1>
         <form>
             <p>
                 <b>Name: </b>
@@ -23,12 +23,11 @@
                 </select>
             </p>
             <p>
-                <b>Comment</b><br/>
+                <b>Comment</b> <span id="statusOutput"></span><br/>
                 <textarea id="commentText" cols="32" rows="4"></textarea><br/>
                 <input type="button" id="writeButton" value="Write"/>
             </p>
-            <p id="statusOutput"></p>
-        </form>
+\        </form>
         <p>
             <a href="index.html">View Feedbacks</a>
         </p>
@@ -52,14 +51,14 @@
                     method: 'post',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({
-                        name: nameText.value,
+                        from: nameText.value,
                         comment: commentText.value,
                         rating: ratingSelect.value
                     })
                 };
                 let response = await fetch('rest/feedbacks/primary', request);
                 if(response.ok)
-                    statusOutput.innerText = response.status == 201 ? "Feedback Created" : "Feedback Updated";              
+                    statusOutput.innerText = response.status == 201 ? "Created" : "Updated";              
                 else
                     statusOutput.innerText = response.statusText;
             };

@@ -7,27 +7,22 @@
         <title>DemoApp - Client</title>
     </head>
     <body>
-        <h1>Welcome Visitor</h1>
+        <h1>Submit Rating</h1>
         <form method="POST">
             <p>
                 <b>Name: </b>
                 <input type="text" asp-for="Input.Name" required="required"/>
-                <input type="submit" name="operation" value="Read"/>
+                <input type="submit" name="operation" value="Lookup"/>
             </p>
             <p>
-                @if(Model.Output != null)
-                {
-                    <b>Comment: </b><i>@Model.Output</i>
-                }
+                <b>Rank: </b>
+                <input type="number" min="1" max="5" asp-for="Input.Rank" value="@Model.Input.Rank" />
+                <input type="submit" name="operation" value="Submit"/>
             </p>
-            <p>
-                <b>New Comment</b><br/>
-                <textarea asp-for="Input.Comment"></textarea><br/>
-                <input type="submit" name="operation" value="Write"/>
-            </p>
+            <p>@Model.Output</p>
         </form>
         <p>
-            <a href="list.html">All Feedbacks</a>
+            <a href="ratings.html">View All Ratings</a>
         </p>
     </body>
 </html>

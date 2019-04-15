@@ -11,32 +11,32 @@ namespace DemoApp.Client.Pages
 
 	public class IndexModel : PageModel
 	{
-		private FeedbackModel _model;
+		private RatingModel _model;
 
-		public IndexModel(FeedbackModel model) => _model = model;
+		public IndexModel(RatingModel model) => _model = model;
 
 		[BindProperty]
-		public Feedback Input {get; set;}
+		public Rating Input {get; set;}
 
 		public string Output {get; set;}
 
-		public void OnGet()
-		{
-			if(Input == null)
-				Input = new Feedback();
-		}
+		public void OnGet() => Input = new Rating {Rank = 1};
 
 		public async Task OnPostAsync(string operation)
 		{
-			if(operation == "Read")
+			if(operation == "Lookup")
 			{
-            	Feedback feedback = await _model.ReadFeedbackAsync(Input.Name);
-				Output = feedback?.Comment ?? "Not Submitted";
+            	Rating rating = await _model.ReadRatingAsync(Input.Name);
+				if(rating != null)
+					Input.Rank = rating.Rank;
+				else
+					Output = "Not Rated";
 			}
 			else
 			{
-				int status = await _model.WriteFeedbackAsync(Input);
-				Output = status == 201 ? "Added" : "Changed";
+				
+				int status = await _model.WriteRatingAsync(Input);
+				Output = status == 201 ? "Rating Added" : "Rating Changed";
 			}
 		}
 	}
