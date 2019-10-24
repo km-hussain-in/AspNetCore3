@@ -9,6 +9,7 @@
   <li><i><a href="https://github.com/km-hussain-in/AspNetCore3/tree/master/DbContextDemo/DemoApp">Database Context</a></i></li>
   <li><i><a href="https://github.com/km-hussain-in/AspNetCore3/tree/master/AuthenticationDemo/DemoApp">Cookies Authentication</a></i></li>
   <li><i><a href="https://github.com/km-hussain-in/AspNetCore3/tree/master/WebApiDemo/DemoApp">Web API</a></i></li>
+  <li><i><a href="https://github.com/km-hussain-in/AspNetCore3/tree/master/WebApiClientDemo/DemoApp">Web API Client</a></i></li>
   <li><i><a href="https://github.com/km-hussain-in/AspNetCore3/tree/master/WebSocketDemo/DemoApp">Web Sockets</a></i></li>
   <li><i><a href="https://github.com/km-hussain-in/AspNetCore3/tree/master/SignalRDemo/DemoApp">Signal-R</a></i></li>
 </ul>

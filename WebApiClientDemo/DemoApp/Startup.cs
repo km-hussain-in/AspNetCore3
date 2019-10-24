@@ -10,7 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
-namespace DemoApp.Client
+namespace DemoApp
 {
     public class Startup
     {

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace DemoApp.Client.Models
+namespace DemoApp.Models
 {
     [DataContract]
     public class Rating
