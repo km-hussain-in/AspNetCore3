@@ -55,7 +55,8 @@ namespace DemoApp
 		public void Configure(IApplicationBuilder app)
 		{
 			app.UseMiddleware<Counting>();
-			app.UseRouting(routes => 
+			app.UseRouting();
+			app.UseEndpoints(routes  => 
 			{
 				routes.MapGet("/Time", Clock);
 				routes.MapGet("/Greet/{name=World}", Greeter);

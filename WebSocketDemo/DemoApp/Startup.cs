@@ -30,10 +30,11 @@ namespace DemoApp
             
             app.UseFileServer();
             app.UseWebSockets();
-            app.UseRouting(routes =>
-            {
+	    	app.UseRouting();
+	    	app.UseEndpoints(routes  => 
+			{
             	routes.MapWebSocketHandler("/auction", new AuctionHandler(50));
-            });
+			});
         }
     }
 }

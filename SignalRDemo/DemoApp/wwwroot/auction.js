@@ -3,7 +3,7 @@ document.write("<script src='signalr.min.js'></script>");
 var connection;
 
 function joinAuction(join, receive){
-    connection = new signalR.HubConnectionBuilder().withUrl("auction").build();
+    connection = new signalR.HubConnectionBuilder().withUrl("/auction").build();
     connection.start().then(join);
     connection.on("BidAccepted", receive);
     connection.on("BidRejected", receive);
@@ -18,5 +18,8 @@ function leaveAuction(){
 
 function doBidding(price){
     if(connection)
-        connection.invoke("AcceptBid", price);
+        connection.invoke("AcceptBid", parseFloat(price)).catch(function (err) {
+		        return console.error(err.toString());
+		});
 }
+

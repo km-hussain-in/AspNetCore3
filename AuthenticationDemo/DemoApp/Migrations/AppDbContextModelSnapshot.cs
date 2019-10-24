@@ -14,20 +14,25 @@ namespace DemoApp.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.0.0-preview.19108.2");
+                .HasAnnotation("ProductVersion", "3.0.0");
 
             modelBuilder.Entity("DemoApp.Data.Visit", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
-                    b.Property<int>("Frequency");
+                    b.Property<int>("Frequency")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("Recent");
+                    b.Property<DateTime>("Recent")
+                        .HasColumnType("TEXT");
 
-                    b.Property<string>("Spot");
+                    b.Property<string>("Spot")
+                        .HasColumnType("TEXT");
 
-                    b.Property<string>("VisitorId");
+                    b.Property<string>("VisitorId")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -39,9 +44,10 @@ namespace DemoApp.Migrations
             modelBuilder.Entity("DemoApp.Data.Visitor", b =>
                 {
                     b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
+                        .HasColumnType("TEXT");
 
-                    b.Property<string>("Password");
+                    b.Property<string>("Password")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 

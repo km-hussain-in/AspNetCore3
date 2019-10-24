@@ -53,7 +53,7 @@
                     body: JSON.stringify({
                         from: nameText.value,
                         comment: commentText.value,
-                        rating: ratingSelect.value
+                        rating: new Number(ratingSelect.value)
                     })
                 };
                 let response = await fetch('rest/feedbacks/primary', request);

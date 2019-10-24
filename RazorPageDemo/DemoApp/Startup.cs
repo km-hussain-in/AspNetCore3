@@ -17,7 +17,7 @@ namespace DemoApp
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-        	services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
+            services.AddRazorPages();
         	services.AddSingleton<ISet<string>, SortedSet<string>>();
         }
 
@@ -29,7 +29,8 @@ namespace DemoApp
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseRouting(routes =>
+            app.UseRouting();
+            app.UseEndpoints(routes =>
             {
             	routes.MapRazorPages();
             });

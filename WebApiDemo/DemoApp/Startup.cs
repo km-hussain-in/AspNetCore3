@@ -19,8 +19,10 @@ namespace DemoApp
         public void ConfigureServices(IServiceCollection services)
         {
         	services.AddDbContext<Models.AppDbContext>(options => options.UseInMemoryDatabase("appdb"));
+			services.AddControllers();
         	//services.AddDbContext<Models.AppDbContext>(options => options.UseSqlite("FileName=app.db"));
-            services.AddMvc().AddNewtonsoftJson();      
+            //services.AddMvc().AddNewtonsoftJson();
+			
             services.AddCors(options => 
             {
                 options.AddPolicy("DemoAppCorsPolicy", builder => 
@@ -43,10 +45,12 @@ namespace DemoApp
 
             app.UseCors("DemoAppCorsPolicy");
 			app.UseFileServer();
-            app.UseRouting(routes =>
+			app.UseRouting();
+            app.UseEndpoints(routes =>
             {
                 routes.MapControllers();
             });
         }
     }
 }
+

@@ -21,9 +21,8 @@ namespace DemoApp
         public void ConfigureServices(IServiceCollection services)
         {
         	services.AddTransient<Data.AppDbContext>();
-
-        	services.AddMvc()
-        		.SetCompatibilityVersion(CompatibilityVersion.Latest)
+            services.AddRazorPages();
+        	services.AddControllers()
         		.AddRazorPagesOptions(options => 
         		{
         			options.Conventions.AuthorizeFolder("/");
@@ -41,8 +40,10 @@ namespace DemoApp
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseRouting();
 			app.UseAuthentication();
-            app.UseRouting(routes =>
+            app.UseAuthorization();
+            app.UseEndpoints(routes =>
             {
             	routes.MapRazorPages();
             });

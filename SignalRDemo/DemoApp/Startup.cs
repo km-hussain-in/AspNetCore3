@@ -28,7 +28,9 @@ namespace DemoApp
                 app.UseDeveloperExceptionPage();
             }
             app.UseFileServer();
-            app.UseRouting(routes => routes.MapHub<Hubs.AuctionHub>("/auction"));
+	    app.UseRouting();
+            app.UseEndpoints(routes => routes.MapHub<Hubs.AuctionHub>("/auction"));
         }
     }
 }
+
