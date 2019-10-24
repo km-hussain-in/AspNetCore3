@@ -1,17 +1,18 @@
+using System.Text;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace DemoApp.Models
 {
-    [DataContract]
     public class Rating
     {
-        [DataMember(Name = "from")]
+		[JsonPropertyName("from")]
         public string Name {get; set;}
 
-        [DataMember(Name = "rating")]
+		[JsonPropertyName("rating")]
         public int Rank {get; set;}
     }
 
@@ -25,14 +26,19 @@ namespace DemoApp.Models
         {
             var response = await _client.GetAsync($"rest/feedbacks/secondary/{name}");
             if(response.IsSuccessStatusCode)
-                return await response.Content.ReadAsAsync<Rating>();
+			{
+                string content = await response.Content.ReadAsStringAsync();
+				return JsonSerializer.Deserialize<Rating>(content);
+			}
             return null;
         }
 
         public async Task<int> WriteRatingAsync(Rating info)
         {
-            var response = await _client.PostAsJsonAsync("rest/feedbacks/secondary", info);
+			var content = JsonSerializer.Serialize(info); 
+            var response = await _client.PostAsync("rest/feedbacks/secondary", new StringContent(content, Encoding.UTF8, "application/json"));
             return (int)response.StatusCode;
         }
     }
 }
+
