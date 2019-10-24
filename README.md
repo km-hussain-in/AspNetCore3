@@ -1,4 +1,4 @@
-<h2>ASP.NET Core 3.0 Samples</h2>
+<h2>ASP.NET Core 3.0 Code Samples</h2>
 <ul>
   <li><i><a href="https://github.com/km-hussain-in/AspNetCore3/tree/master/WebHostDemo/DemoApp">Web Host</a></i></li>
   <li><i><a href="https://github.com/km-hussain-in/AspNetCore3/tree/master/MvcControllerDemo/DemoApp">MVC Controllers</a></i></li>
