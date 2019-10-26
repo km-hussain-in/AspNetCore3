@@ -16,12 +16,12 @@ namespace DemoApp.Pages
         protected override void OnInitialized()
         {
             Greeted = Counter.Entries;
-            Counter.Increment += OnCountIncrement;
+            Counter.Increment += CounterIncrement;
         }
 
-		private async void OnCountIncrement(object sender, System.EventArgs e)
+		private async void CounterIncrement(object sender, System.EventArgs e)
 		{
-			await InvokeAsync(() => StateHasChanged());
+			await InvokeAsync(StateHasChanged);
 		}
     }
 }
