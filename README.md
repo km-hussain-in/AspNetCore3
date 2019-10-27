@@ -13,6 +13,8 @@
   <li><i><a href="https://github.com/km-hussain-in/AspNetCore3/tree/master/WebSocketDemo/DemoApp">Web Sockets</a></i></li>
   <li><i><a href="https://github.com/km-hussain-in/AspNetCore3/tree/master/SignalRDemo/DemoApp">Signal-R</a></i></li>
   <li><i><a href="https://github.com/km-hussain-in/AspNetCore3/tree/master/BlazorServerDemo/DemoApp">Blazor Server</a></i></li>
+  <li><i><a href="https://github.com/km-hussain-in/AspNetCore3/tree/master/GrpcServerDemo/DemoApp">GRPC Server</a></i></li>
+  <li><i><a href="https://github.com/km-hussain-in/AspNetCore3/tree/master/GrpcClientDemo/DemoApp">GRPC Client</a></i></li>
 </ul>
 <p>
   <i>&copy;2019 K.M Hussain. All rights reserved.</i>
