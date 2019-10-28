@@ -21,8 +21,8 @@
   <li><i><a href="Advanced/WebSocketDemo/DemoApp">Web Sockets</a></i></li>
   <li><i><a href="Advanced/SignalRDemo/DemoApp">Signal-R</a></i></li>
   <li><i><a href="Advanced/BlazorServerDemo/DemoApp">Blazor Server</a></i></li>
-  <li><i><a href="Advanced/GrpcServerDemo/DemoApp">GRPC Server</a></i></li>
-  <li><i><a href="Advanced/GrpcClientDemo/DemoApp">GRPC Client</a></i></li>
+  <li><i><a href="Advanced/GrpcServerDemo/DemoApp">gRPC Server</a></i></li>
+  <li><i><a href="Advanced/GrpcClientDemo/DemoApp">gRPC Client</a></i></li>
   </ul>
   </li>
   </ul>
