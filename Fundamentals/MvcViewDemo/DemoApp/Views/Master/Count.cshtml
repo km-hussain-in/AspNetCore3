@@ -1,0 +1,15 @@
+@addTagHelper *, DemoApp
+@{
+	var visitor = (string)ViewContext.RouteData.Values["name"];
+}
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>DemoApp</title>
+	</head>
+	<body>
+		<h1>Welcome @visitor</h1>
+		<p>Number of visits is <span app-count-for="@visitor"></span></p>
+	</body>
+</html>
+

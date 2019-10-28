@@ -1,0 +1,33 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf8">
+  <title>SQLite Browser</title>
+  <link rel="stylesheet" href="codemirror.css">
+  <link rel="stylesheet" href="demo.css">
+  <script src="codemirror.js"></script>
+
+</head>
+<body>
+	<h1>SQLite Browser</h1>
+
+<main>
+    <label for='commands'>SQL</label>
+    <br>
+
+    <textarea id="commands" rows='10'></textarea>
+
+<button id="execute" class="button">Execute</button>
+<button id='savedb'  class="button">Save Database</button>
+<label class="button">Load Database <input type='file' id='dbfile'></label>
+
+<div id="error" class="error"></div>
+
+<pre id="output"></pre>
+</main>
+
+<script src="sql.js"></script>
+<script type="text/javascript" src="gui.js"></script>
+</body>
+</html>

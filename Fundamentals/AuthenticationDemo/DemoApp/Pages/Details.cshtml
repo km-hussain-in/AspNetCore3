@@ -1,0 +1,39 @@
+@page
+@model DemoApp.Pages.DetailsModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>DemoApp</title>
+	</head>
+	<body>
+		<h1>Welcome @Model.Visitor.Id</h1>
+		<h3>Your Visits</h3>
+		<table border="1">
+			<tr>
+				<th>Spot Name</th>
+				<th>Visit Count</th>
+				<th>Last Visit</th>
+			</tr>
+			@foreach(var item in Model.Visitor.Visits)
+			{
+				<tr>
+					<td>@item.Spot</td>
+					<td>@item.Frequency</td>
+					<td>@item.Recent</td>
+				</tr>
+			}
+		</table>
+		<p>
+			<form method="POST">
+				<b>Spot Name:</b>
+				<input name="spotName" required="required"/>
+				<input type="submit" value="Visit"/>
+			</form>
+		</p>
+		<p>
+			<a asp-page-handler="logout">Sign Out</a>
+		</p>
+	</body>
+</html>
+

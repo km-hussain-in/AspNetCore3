@@ -1,0 +1,33 @@
+@page
+@model DemoApp.Pages.IndexModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>DemoApp</title>
+	</head>
+	<body>
+		<h1>Welcome Visitor</h1>
+		<form method="POST">
+			<table>
+				<tr>
+					<td><b>Your Id:</b></td>
+					<td><input asp-for="Input.Id" required="required"/></td>
+				</tr>
+				<tr>
+					<td><b>Password:</b></td>
+					<td><input type="password" asp-for="Input.Password" required="required"/></td>
+					<td><input type="submit" value="Sign-In" asp-page-handler="signIn"/></td>
+				</tr>
+				<tr>
+					<td><b>Confirm:</b></td>
+					<td><input type="password" asp-for="Input.ConfirmPassword"/></td>
+					<td><input type="submit" value="Sign-Up" asp-page-handler="signUp"/></td>
+				</tr>
+			</table>
+			<div/>
+			<div asp-validation-summary="All"></div>
+		</form>
+	</body>
+</html>
+
