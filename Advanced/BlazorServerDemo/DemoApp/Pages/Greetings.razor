@@ -1,0 +1,16 @@
+@page "/greetings"
+@inherits DemoApp.Pages.GreetingsComponent
+<h3>Greeted Visitors</h3>
+<table border="1">
+    <tr>
+        <th>Visitor Name</th>
+        <th>Greet Count</th>
+    </tr>
+    @foreach(var item in Greeted)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Count</td>
+        </tr>
+    }
+</table>
