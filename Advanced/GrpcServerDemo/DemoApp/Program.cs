@@ -21,13 +21,13 @@ namespace DemoApp
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-		    /*
-		    //disable transport level security
-		    webBuilder.ConfigureKestrel(options => 
-		    {
-			options.ListenLocalhost(5000, o => o.Protocols = Microsoft.AspNetCore.Server.Kestrel.Core.HttpProtocols.Http2);
-		    });					
-		    */
+					#if INSECURE
+					//disable transport level security
+					webBuilder.ConfigureKestrel(options => 
+					{
+						options.ListenLocalhost(5000, o => o.Protocols = Microsoft.AspNetCore.Server.Kestrel.Core.HttpProtocols.Http2);
+					});			
+					#endif
                     webBuilder.UseStartup<Startup>();
                 });
     }

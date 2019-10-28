@@ -1,4 +1,5 @@
 syntax = "proto3";
+import "google/protobuf/empty.proto";
 
 option csharp_namespace = "DemoApp";
 
@@ -6,8 +7,10 @@ package Shopping;
 
 service ShopKeeper {
   rpc GetItemInfo (ItemInfoRequest) returns (ItemInfoReply);
+  rpc GetItemNames (google.protobuf.Empty) returns (stream ItemInfoRequest);
   rpc GetBulkDiscount (BulkDiscountRequest) returns (BulkDiscountReply);
 }
+
 
 message ItemInfoRequest {
   string name = 1;

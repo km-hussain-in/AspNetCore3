@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Grpc.Core;
 
 namespace DemoApp
 {
@@ -15,13 +16,14 @@ namespace DemoApp
     {
         public static void Main(string[] args)
         {
-	    //to access GRPC service with transport level security disabled
-	    //AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
-
-            if(args.Length < 2)
-                CreateHostBuilder(args).Build().Run();
+			#if INSECURE
+			//disable transport level security
+			AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+			#endif
+            if(args.Length > 0 && args[0] == "items")
+                RunConsoleClient(args).Wait();
             else
-                RunConsoleClient(args);
+                CreateHostBuilder(args).Build().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -31,23 +33,14 @@ namespace DemoApp
                     webBuilder.UseStartup<Startup>();
                 });
 
-        private static void RunConsoleClient(string[] args)
+        private static async Task RunConsoleClient(string[] args)
         {
-            string itm = args[0].ToLower();
-            int qty = int.Parse(args[1]);
-
-		 	var channel = Grpc.Net.Client.GrpcChannel.ForAddress("https://localhost:5001/");
+		 	var channel = Grpc.Net.Client.GrpcChannel.ForAddress("http://localhost:5000/");
 			var client = new ShopKeeper.ShopKeeperClient(channel);
-
-			var info = client.GetItemInfo(new ItemInfoRequest{Name = itm});
-            if(qty <= info.CurrentStock)
-            {
-                float dis = client.GetBulkDiscount(new BulkDiscountRequest{Quantity = qty}).Rate;
-                double amt = qty * info.UnitPrice * (1 - dis / 100); 
-                Console.WriteLine($"Total Payment: {amt:0.00}");
-            }
-            else
-                Console.WriteLine("Not available!");
+			var result = client.GetItemNames(new Google.Protobuf.WellKnownTypes.Empty());
+			await foreach(var item in result.ResponseStream.ReadAllAsync())
+				Console.WriteLine(item.Name);
         }
     }
 }
+
