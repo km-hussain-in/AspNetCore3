@@ -16,7 +16,7 @@
   <li>
   <b>Advanced</b>
   <ul>
-  <li><i><a href=Advanced/DemoApp">Web API</a></i></li>
+  <li><i><a href=Advanced/WebApiDemo/DemoApp">Web API</a></i></li>
   <li><i><a href=Advanced/WebApiClientDemo/DemoApp">Web API Client</a></i></li>
   <li><i><a href=Advanced/WebSocketDemo/DemoApp">Web Sockets</a></i></li>
   <li><i><a href=Advanced/SignalRDemo/DemoApp">Signal-R</a></i></li>
