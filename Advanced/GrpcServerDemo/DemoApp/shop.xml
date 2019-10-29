@@ -1,0 +1,30 @@
+<shop>
+	<item name="cpu">
+		<price>200</price>
+		<stock>100</stock>
+	</item>
+	<item name="hdd">
+		<price>80</price>
+		<stock>90</stock>
+	</item>
+	<item name="keyboard">
+		<price>20</price>
+		<stock>150</stock>
+	</item>
+	<item name="monitor">
+		<price>100</price>
+		<stock>20</stock>
+	</item>
+	<item name="motherboard">
+		<price>80</price>
+		<stock>100</stock>
+	</item>
+	<item name="mouse">
+		<price>10</price>
+		<stock>150</stock>
+	</item>
+	<item name="ram">
+		<price>30</price>
+		<stock>200</stock>
+	</item>
+</shop>	
