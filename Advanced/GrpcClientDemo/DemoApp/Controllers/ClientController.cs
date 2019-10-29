@@ -32,7 +32,7 @@ namespace DemoApp.Controllers
 			return items;
 		}
 
-		[HttpPost]
+		[HttpPut]
 		public async Task<ActionResult<Purchase>> ProcessOrder(Purchase input)
 		{
 			var info = await _client.GetItemInfoAsync(new ItemInfoRequest{Name = input.Item});

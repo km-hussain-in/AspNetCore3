@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Grpc.Core;
 
 namespace DemoApp
 {
@@ -35,7 +34,11 @@ namespace DemoApp
 
         private static void RunConsoleClient(string[] args)
         {
+            #if INSECURE
 		 	var channel = Grpc.Net.Client.GrpcChannel.ForAddress("http://localhost:5000/");
+            #else
+            var channel = Grpc.Net.Client.GrpcChannel.ForAddress("https://localhost:5001/");
+            #endif
 			var client = new ShopKeeper.ShopKeeperClient(channel);
             var info = client.GetItemInfo(new ItemInfoRequest{Name = args[0]});
             

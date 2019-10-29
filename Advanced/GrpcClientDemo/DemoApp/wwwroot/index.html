@@ -16,7 +16,7 @@
                 <input type="number" id="quantityInput" required="required"/>
             </p>
             </p>
-                <input type="button" id="purchaseButton" value="Purchase"/>
+                <input type="button" id="checkButton" value="Check"/>
             </p>
             <div id="paymentOutput"></div>
         </form>
@@ -31,11 +31,11 @@
                     itemInput.appendChild(itemOption);
                 }
             };
-            document.getElementById("purchaseButton").onclick = async function(){
+            document.getElementById("checkButton").onclick = async function(){
                 let quantityInput = document.getElementById("quantityInput");
                 let paymentOutput = document.getElementById("paymentOutput");
                 const request = {
-                    method: 'post',
+                    method: 'put',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({
                         item: itemInput.value,
@@ -47,7 +47,7 @@
                     let result = await response.json();
                     paymentOutput.innerText = "Total Payment: " + result.payment.toFixed(2);              
                 }else
-                    paymentOutput.innerText = "Not available";
+                    paymentOutput.innerText = "Out of stock!";
             };
         </script>
     </body>
