@@ -8,7 +8,8 @@
         <form>
             <p>
                 <b>Name of Item</b><br/>
-                <input type="text" id="itemInput" required="required"/>
+                <select id="itemInput">
+                </select>
             </p>
             <p>
                 <b>Quantity to Buy</b><br/>
@@ -20,10 +21,19 @@
             <div id="paymentOutput"></div>
         </form>
         <script>
-            let itemInput = document.getElementById("itemInput");
-            let quantityInput = document.getElementById("quantityInput");
-            let paymentOutput = document.getElementById("paymentOutput");
+            window.onload = async function(){
+                let itemInput = document.getElementById("itemInput");
+                let response = await fetch("shop/client");
+                let items = await response.json();
+                for(let i in items){
+                    let itemOption = document.createElement("option");
+                    itemOption.innerText = items[i].name;
+                    itemInput.appendChild(itemOption);
+                }
+            };
             document.getElementById("purchaseButton").onclick = async function(){
+                let quantityInput = document.getElementById("quantityInput");
+                let paymentOutput = document.getElementById("paymentOutput");
                 const request = {
                     method: 'post',
                     headers: {'Content-Type': 'application/json'},

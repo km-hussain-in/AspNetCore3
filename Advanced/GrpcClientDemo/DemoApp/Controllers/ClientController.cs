@@ -1,7 +1,9 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Grpc.Core;
 
 namespace DemoApp.Controllers
 {
@@ -18,19 +20,32 @@ namespace DemoApp.Controllers
 			_client = client;
 		}
 
-		[HttpPost]
-		public ActionResult<Purchase> ProcessOrder(Purchase input)
+		[HttpGet]
+		public async Task<IEnumerable<ItemInfoRequest>> GetItems()
 		{
-			var info = _client.GetItemInfo(new ItemInfoRequest{Name = input.Item});
+			var items = new List<ItemInfoRequest>();
+			var result = _client.GetItemNames(new Google.Protobuf.WellKnownTypes.Empty());
+			
+			await foreach(var item in result.ResponseStream.ReadAllAsync())	
+				items.Add(item);
+
+			return items;
+		}
+
+		[HttpPost]
+		public async Task<ActionResult<Purchase>> ProcessOrder(Purchase input)
+		{
+			var info = await _client.GetItemInfoAsync(new ItemInfoRequest{Name = input.Item});
 			if(input.Quantity <= info.CurrentStock)
 			{
-                float dis = _client.GetBulkDiscount(new BulkDiscountRequest{Quantity = input.Quantity}).Rate;
-                input.Payment = input.Quantity * info.UnitPrice * (1 - dis / 100); 
+                input.Payment = 1.06 * input.Quantity * info.UnitPrice; 
 				return Ok(input);
 			}
 			
 			return NotFound();
 		}
+
+		
 	}
 	
 }

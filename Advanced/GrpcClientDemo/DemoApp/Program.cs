@@ -20,8 +20,8 @@ namespace DemoApp
 			//disable transport level security
 			AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
 			#endif
-            if(args.Length > 0 && args[0] == "items")
-                RunConsoleClient(args).Wait();
+            if(args.Length == 1)
+                RunConsoleClient(args);
             else
                 CreateHostBuilder(args).Build().Run();
         }
@@ -33,13 +33,13 @@ namespace DemoApp
                     webBuilder.UseStartup<Startup>();
                 });
 
-        private static async Task RunConsoleClient(string[] args)
+        private static void RunConsoleClient(string[] args)
         {
 		 	var channel = Grpc.Net.Client.GrpcChannel.ForAddress("http://localhost:5000/");
 			var client = new ShopKeeper.ShopKeeperClient(channel);
-			var result = client.GetItemNames(new Google.Protobuf.WellKnownTypes.Empty());
-			await foreach(var item in result.ResponseStream.ReadAllAsync())
-				Console.WriteLine(item.Name);
+            var info = client.GetItemInfo(new ItemInfoRequest{Name = args[0]});
+            
+            Console.WriteLine($"Stock: {info.CurrentStock}");
         }
     }
 }
