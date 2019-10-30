@@ -1,9 +1,7 @@
 syntax = "proto3";
 import "google/protobuf/empty.proto";
 
-option csharp_namespace = "DemoApp";
-
-package Shopping;
+package demo_app;
 
 service ShopKeeper {
   rpc GetItemInfo (ItemInfoRequest) returns (ItemInfoReply);
